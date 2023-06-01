@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  name String
+  secondName String
+  password String
+  area String
+  admin Boolean @default(false)
+}
+model Dtp {
+  id Int @id @default(autoincrement())
+  category String
+  description String
+  dateAndTime DateTime? @default(now())
+  addr String
+  coordinates String
+  class1 String
+}
+model Complex{
+  id Int @id @default(autoincrement())
+  complexType ComplexType @default(STATIC)
+  startingTime DateTime 
+  endingTime DateTime 
+  addr String
+  coordinates String
+  class1 String
+}
+
+
+enum ComplexType {
+  MOBILE
+  STATIC
+}
